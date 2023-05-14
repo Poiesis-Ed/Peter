@@ -11,6 +11,9 @@ import { Settings } from '@/types/settings';
 import { SystemPrompt } from '@/types/systemPrompt';
 
 import HomeContext from '@/pages/api/home/home.context';
+import { Prompt } from '@/types/prompt';
+
+import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
   open: boolean;
@@ -140,7 +143,15 @@ export const SettingDialog: FC<Props> = ({ open, onClose }) => {
                 ))}
               </select>
             </div>
-
+            <button 
+              type="button"
+              className="w-full px-4 py-2 mt-6 border rounded-lg shadow border-neutral-500 text-neutral-900 hover:bg-neutral-100 focus:outline-none dark:border-neutral-800 dark:border-opacity-50 dark:bg-white dark:text-black dark:hover:bg-neutral-300"
+              onClick={() => {
+                alert('Not implemented yet');
+              }}
+            >
+              {t('Load default prompts')}
+            </button>
             <button
               type="button"
               className="w-full px-4 py-2 mt-6 border rounded-lg shadow border-neutral-500 text-neutral-900 hover:bg-neutral-100 focus:outline-none dark:border-neutral-800 dark:border-opacity-50 dark:bg-white dark:text-black dark:hover:bg-neutral-300"
