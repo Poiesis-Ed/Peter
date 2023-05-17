@@ -396,7 +396,7 @@ export const ChatInput = ({
       </div>
       <div className="px-3 pt-2 pb-3 text-center text-[12px] text-black/50 dark:text-white/50 md:px-4 md:pt-3 md:pb-6">
         {t(
-          "Poiesis Pete may produce inaccurate information. If it doesn't sound right, check it yourself.",
+          "Poiesis Pete may produce inaccurate or incorrect information. If it doesn't sound right, check it for yourself.",
         )}
       </div>
     </div>
