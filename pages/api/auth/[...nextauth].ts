@@ -2,7 +2,7 @@ import NextAuth, { NextAuthOptions } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import AzureAdProvider from 'next-auth/providers/azure-ad';
-import { Jwt } from 'next-auth/jwt';
+import { JWT } from 'next-auth/jwt';
 
 const providers = [];
 if (process.env.GOOGLE_CLIENT_ID) {
@@ -40,7 +40,7 @@ if (process.env.AZURE_CLIENT_ID) {
   );
 }
 
-const jwtCallback = async (token: Jwt, user: User) => {
+const jwtCallback = async (token: JWT, user: User) => {
   // Check if the user is authenticated
   if (user) {
     // Allow authenticated users to access the application
