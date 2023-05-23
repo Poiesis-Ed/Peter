@@ -2,6 +2,7 @@ import NextAuth, { NextAuthOptions } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import AzureAdProvider from 'next-auth/providers/azure-ad';
+import { Jwt } from 'next-auth/jwt';
 
 const providers = [];
 if (process.env.GOOGLE_CLIENT_ID) {
