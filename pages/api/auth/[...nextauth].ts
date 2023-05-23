@@ -39,9 +39,28 @@ if (process.env.AZURE_CLIENT_ID) {
   );
 }
 
+const jwtCallback = async (token: Jwt, user: User) => {
+  // Check if the user is authenticated
+  if (user) {
+    // Allow authenticated users to access the application
+    token.isAuthenticated = true;
+  } else {
+    // Block unauthenticated users from accessing the application
+    token.isAuthenticated = false;
+  }
+
+  return Promise.resolve(token);
+};
+
 export const authOptions: NextAuthOptions = {
   providers: providers,
-  session: { strategy: 'jwt' },
+  session: {
+    strategy: 'jwt',
+    callbacks: {
+      jwt: jwtCallback,
+    },
+  },
 };
 
 export default NextAuth(authOptions);
+
