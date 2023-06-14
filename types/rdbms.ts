@@ -26,7 +26,11 @@ export class RDBMSUser {
   id!: string;
 
   @Column({ type: textType, nullable: true })
-  pass!: string | null;
+  pass!: string | null; 
+
+
+  @Column("text", { array: true, default: () => 'ARRAY[]::text[]' })
+  accessibleModels!: string[];
 }
 
 
