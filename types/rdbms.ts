@@ -9,6 +9,7 @@ import {
 } from "typeorm"
 
 import {ColumnType} from 'typeorm/driver/types/ColumnTypes'
+import { OpenAIModelID } from "./openai";
 
 let textType = 'varchar' as ColumnType
 let timestampType = 'timestamptz' as ColumnType
@@ -27,6 +28,9 @@ export class RDBMSUser {
 
   @Column({ type: textType, nullable: true })
   pass!: string | null;
+
+  @Column({ type: "simple-array", nullable: true })
+  allowed_models!: OpenAIModelID[] | null;
 }
 
 
