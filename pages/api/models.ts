@@ -24,17 +24,26 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const dataSource = await getDataSource();
   const user = await getUser(dataSource, userId);
 
-  const allowed_models = user.allowed_models;
+  const user_model_list = user.allowed_models;
   
-  if (!allowed_models) {
-    return res.status(418).json({ error: 'User does not have any allowed models' });
+  if (user_model_list === null || user_model_list.length === 0) {
+    // return gpt-3.5-turbo as default
+    const default_fallback = [{
+      id: OpenAIModelID.GPT_3_5,
+      name: OpenAIModels[OpenAIModelID.GPT_3_5].name
+    }];
+    return res.status(200).json(default_fallback);
   }
-  
-  const allowedModels: OpenAIModel[] = allowed_models.map((modelID: string) => {
-    return OpenAIModels[modelID as OpenAIModelID];
+
+  const allowed_models = user_model_list.map((model: string) => {
+    return {
+      id: model,
+      name: OpenAIModels[model as OpenAIModelID].name
+    }
   });
 
-  return res.status(200).json({ allowedModels });
+  
+  return res.status(200).json(allowed_models);
 
   
 };
