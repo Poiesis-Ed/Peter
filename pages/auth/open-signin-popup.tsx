@@ -27,12 +27,15 @@ export default function SignIn({ providers }: InferGetServerSidePropsType<typeof
     return (
       <>
           <div className="flex flex-col justify-center items-center h-screen">
-            <h1 className="text-3xl font-bold text-white pb-8">This view is not currently supported</h1>
+            {/* 
+              <h1 className="text-3xl font-bold text-white pb-2">This view is not currently supported</h1>
+              <p className="text-white text-xl pb-8">Please go to chat.poiesis.education to access the web client</p>
+            {*/}
             <button
-              className="bg-blue-500 p-4 align-middle hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-500 p-4 align-middle text-xl hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               onClick={() => openInNewTab()}
             >
-              Go to chat.poiesis.education
+              Open
             </button>
           </div>
       </>
