@@ -7,14 +7,12 @@ import { useEffect, useState } from "react";
 export default function SignIn({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { data: session, status } = useSession();
   const [isIframed, setIsIframed] = useState<Boolean>(false)
-  const openPopup = (providerId: string) => {
+  const openInNewTab = () => {
+    const url = "/"
+    const newTab = window.open(url, '_blank');
+    newTab?.focus();
+  }
 
-    const url = `/auth/signin?provider=${providerId}`; // Replace with your desired URL
-    const options = "width=500,height=500"; // Customize the window options as needed
-    const popup = window.open(url, "_blank", options);
-
-    // Close the popup and remove the event listener when the window is closed
-  };
   useEffect(() => {
     if (!(window===window.parent)) {
       setIsIframed(true)
@@ -28,16 +26,15 @@ export default function SignIn({ providers }: InferGetServerSidePropsType<typeof
   } else if (isIframed && status === "unauthenticated") {
     return (
       <>
-        {Object.values(providers).map((provider) => (
-          <div className="flex justify-center items-center h-screen" key={provider.name}>
+          <div className="flex flex-col justify-center items-center h-screen">
+            <h1 className="text-3xl font-bold text-white pb-8">This view is not currently supported</h1>
             <button
-              className="bg-blue-500 align-middle hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={() => openPopup(provider.id)}
+              className="bg-blue-500 p-4 align-middle hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={() => openInNewTab()}
             >
-              Sign in with {provider.name}
+              Go to chat.poiesis.education
             </button>
           </div>
-        ))}
       </>
     )
   } else if (status === "unauthenticated") {
