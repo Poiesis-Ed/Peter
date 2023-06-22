@@ -41,10 +41,7 @@ if (process.env.AZURE_CLIENT_ID) {
 
 export const authOptions: NextAuthOptions = {
   providers: providers,
-  session: { strategy: 'jwt' },
-  pages: {
-    signIn: '/auth/open-signin-popup',
-  }
+  session: { strategy: 'jwt' }
 };
 
 export default NextAuth(authOptions);
