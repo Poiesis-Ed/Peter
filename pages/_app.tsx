@@ -14,15 +14,17 @@ const inter = Inter({ subsets: ['latin'] });
 function App({ Component, pageProps }: AppProps<{ session: Session }>) {
   const queryClient = new QueryClient();
 
-  return (
+  return (<>
+    <base target="_parent"></base>
     <SessionProvider session={pageProps.session}>
-      <div className={inter.className}>
-        <Toaster />
-        <QueryClientProvider client={queryClient}>
-          <Component {...pageProps} />
-        </QueryClientProvider>
-      </div>
+        <div className={inter.className}>
+          <Toaster />
+          <QueryClientProvider client={queryClient}>
+            <Component {...pageProps} />
+          </QueryClientProvider>
+        </div>
     </SessionProvider>
+    </>
   );
 }
 
